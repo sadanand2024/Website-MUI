@@ -92,8 +92,43 @@ const manage = {
       type: 'item',
       url: '/payroll',
       icon: 'IconInvoice',
-      roles: [AuthRole.SUPER_ADMIN, AuthRole.CORPORATE_ADMIN, AuthRole.SERVICE_PROVIDER]
-    }
+      //roles: [AuthRole.SUPER_ADMIN, AuthRole.CORPORATE_ADMIN, AuthRole.SERVICE_PROVIDER]
+    },
+    {
+      id: 'gst',
+      title: <FormattedMessage id="gst" />,
+      type: 'item',
+      url: '/gst/screen1',
+      icon: 'IconFileCertificate',
+    },
+    {
+      id: 'trade-license',
+      title: <FormattedMessage id="trade-license" />,
+      type: 'item',
+      url: '/tradelicense/screen1',
+      icon: 'IconBriefcase',
+    },
+    {
+      id: 'company-incorporation',
+      title: <FormattedMessage id="company-incorporation" />,
+      type: 'item',
+      url: '/companyincorporation/screen1',
+      icon: 'IconBuildingSkyscraper',
+    },
+    {
+      id: 'labour-license',
+      title: <FormattedMessage id="labour-license" />,
+      type: 'item',
+      url: '/labour/screen1',
+      icon: 'IconBuildingFactory',
+    },
+    {
+      id: 'msme',
+      title: <FormattedMessage id="msme" />,
+      type: 'item',
+      url: '/msme/screen1',
+      icon: 'IconBuildingStore', // Best fit for MSME
+    },
 
     //
     // {

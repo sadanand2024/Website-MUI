@@ -1,47 +1,39 @@
-name: Dev Workflow
+name: Dev Workflow (Deploy to S3)
 
 on:
-  workflow_dispatch: # Manual trigger for the workflow
+  workflow_dispatch:
 
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+
     steps:
-      # Step 1: Checkout the repository
+      # Step 1: Checkout code
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Debug EC2 IP
-        run: echo "EC2_PUBLIC_IP_DEV=${{ secrets.EC2_PUBLIC_IP_DEV }}"
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
 
-      # Step 2: Set up SSH key for accessing EC2
-      - name: Set up SSH key
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_SECRET_KEY_DEV }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-
-      # Step 3: Set up known hosts to avoid SSH prompts
-      - name: Set up known hosts
-        run: |
-          ssh-keyscan -H ${{ secrets.EC2_PUBLIC_IP_DEV }} >> ~/.ssh/known_hosts
-
-      # Step 4: Install dependencies
+      # Step 3: Install dependencies
       - name: Install dependencies
-        run: |
-          npm install
+        run: npm install
 
-      # Step 5: Build the Next.js app
-      - name: Build Next.js app
-        run: |
-          npm run build
+      # Step 4: Build static site (Next.js export)
+      - name: Build static site
+        run: npm run build && npm run export
 
-      # Step 6: Deploy files to the Nginx server
-      - name: Copy files to Nginx server
-        run: |
-          scp -r -i ~/.ssh/id_rsa ./out/* ec2-user@${{ secrets.EC2_PUBLIC_IP_DEV }}:/usr/share/nginx/html/
-
-      # Step 7: Reload Nginx to apply changes
-      - name: Reload Nginx
-        run: |
-          ssh -i ~/.ssh/id_rsa ec2-user@${{ secrets.EC2_PUBLIC_IP_DEV }} 'sudo systemctl reload nginx'
+      # Step 5: Deploy to S3
+      - name: Upload to S3
+        uses: jakejarvis/s3-sync-action@v0.5.1
+        with:
+          args: --delete
+        env:
+          AWS_S3_BUCKET: ${{ secrets.FRONTEND_S3_BUCKET_DEV }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.DEPLOY_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.DEPLOY_SECRET_ACCESS_KEY }}
+          AWS_REGION: 'us-east-1' # Change if needed
+          SOURCE_DIR: 'out'
