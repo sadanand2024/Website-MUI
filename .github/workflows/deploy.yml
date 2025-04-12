@@ -15,8 +15,6 @@ jobs:
       # Step 2: Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
-        with:
-          node-version: '18'
 
       # Step 3: Install dependencies
       - name: Install dependencies
@@ -24,7 +22,7 @@ jobs:
 
       # Step 4: Build static site (Next.js export)
       - name: Build static site
-        run: npm run build && npm run export
+        run: npm run build
 
       # Step 5: Deploy to S3
       - name: Upload to S3
