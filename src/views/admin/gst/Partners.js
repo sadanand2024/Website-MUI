@@ -1,6 +1,6 @@
 "use client";
 
-import { TabContext, TabList, TabPanel } from '@mui/lab';
+// import { TabContext, TabList, TabPanel } from '@mui/lab';
 import {
   Box,
   Button,
@@ -386,7 +386,7 @@ export default function PartnersForm() {
       {/* Only render the form when numPartners is selected */}
       {numPartners && (
         <>
-          <TabContext value={activeTab}>
+          {/* <TabContext value={activeTab}>
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
               <TabList
                 onChange={(e, newValue) => setActiveTab(newValue)}
@@ -697,7 +697,7 @@ export default function PartnersForm() {
             <Button variant="contained" color="primary" onClick={handleSaveAndContinue}>
               {"Save & Continue"}
             </Button>
-          </Stack>
+          </Stack> */}
         </>
       )}
     </Box>
