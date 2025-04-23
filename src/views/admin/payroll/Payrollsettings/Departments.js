@@ -134,12 +134,12 @@ function Departments() {
               <Table>
                 <TableHead>
                   <TableRow>
-                    <TableCell>S No</TableCell>
-                    <TableCell>Department Name</TableCell>
-                    <TableCell>Department Code</TableCell>
-                    <TableCell>Description</TableCell>
-                    <TableCell>No of Employees</TableCell>
-                    <TableCell>Actions</TableCell>
+                    <TableCell sx={{ whiteSpace: 'nowrap', fontWeight: 'bold' }}>S No</TableCell>
+                    <TableCell sx={{ whiteSpace: 'nowrap', fontWeight: 'bold' }}>Department Name</TableCell>
+                    <TableCell sx={{ whiteSpace: 'nowrap', fontWeight: 'bold' }}>Department Code</TableCell>
+                    <TableCell sx={{ whiteSpace: 'nowrap', fontWeight: 'bold' }}>Description</TableCell>
+                    <TableCell sx={{ whiteSpace: 'nowrap', fontWeight: 'bold' }}>No of Employees</TableCell>
+                    <TableCell sx={{ whiteSpace: 'nowrap', fontWeight: 'bold' }}>Actions</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>

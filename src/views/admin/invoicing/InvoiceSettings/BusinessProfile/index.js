@@ -164,6 +164,7 @@ export default function TabOne({ postType, businessDetails, handleNext }) {
       }));
     }
   }, [businessDetails]);
+  console.log(businessDetails);
   return (
     <>
       <Typography variant="h5" textAlign="center" sx={{ fontWeight: 'bold', fontSize: { xs: '1.25rem', sm: '1.5rem', md: '1.75rem' } }}>

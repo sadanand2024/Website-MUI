@@ -169,11 +169,11 @@ function HolidayManagement() {
               <Table size="large">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Holiday Name</TableCell>
-                    <TableCell>Date</TableCell>
-                    <TableCell>Description</TableCell>
-                    <TableCell>Locations</TableCell>
-                    <TableCell>Actions</TableCell>
+                    <TableCell sx={{ whiteSpace: 'nowrap', fontWeight: 'bold' }}>Holiday Name</TableCell>
+                    <TableCell sx={{ whiteSpace: 'nowrap', fontWeight: 'bold' }}>Date</TableCell>
+                    <TableCell sx={{ whiteSpace: 'nowrap', fontWeight: 'bold' }}>Description</TableCell>
+                    <TableCell sx={{ whiteSpace: 'nowrap', fontWeight: 'bold' }}>Locations</TableCell>
+                    <TableCell sx={{ whiteSpace: 'nowrap', fontWeight: 'bold' }}>Actions</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>

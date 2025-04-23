@@ -23,6 +23,7 @@ import ActionCell from '@/utils/ActionCell';
 import { useSnackbar } from '@/components/CustomSnackbar';
 import { usePathname, useRouter } from 'next/navigation';
 import MainCard from '@/components/MainCard';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 function SalaryTemplateList() {
   const [openDialog, setOpenDialog] = useState(false); // State to manage dialog visibility
@@ -101,11 +102,11 @@ function SalaryTemplateList() {
               <Table>
                 <TableHead>
                   <TableRow>
-                    <TableCell>S.No</TableCell>
-                    <TableCell>Template Name</TableCell>
-                    <TableCell>Description</TableCell>
-                    <TableCell>Status</TableCell>
-                    <TableCell>Actions</TableCell>
+                    <TableCell sx={{ whiteSpace: 'nowrap', fontWeight: 'bold' }}>S.No</TableCell>
+                    <TableCell sx={{ whiteSpace: 'nowrap', fontWeight: 'bold' }}>Template Name</TableCell>
+                    <TableCell sx={{ whiteSpace: 'nowrap', fontWeight: 'bold' }}>Description</TableCell>
+                    <TableCell sx={{ whiteSpace: 'nowrap', fontWeight: 'bold' }}>Status</TableCell>
+                    <TableCell sx={{ whiteSpace: 'nowrap', fontWeight: 'bold' }}>Actions</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -148,6 +149,7 @@ function SalaryTemplateList() {
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: 2 }}>
           <Button
             variant="outlined"
+            startIcon={<ArrowBackIcon />}
             onClick={() => {
               router.back();
             }}

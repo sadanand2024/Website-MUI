@@ -59,7 +59,7 @@ export default function DepartmentDialog({ open, handleClose, fetchDepartments, 
         handleClose();
         showSnackbar(type === 'edit' ? 'Record Updated Successfully' : 'Record Saved Successfully', 'success');
       } else {
-        showSnackbar(JSON.stringify(res.data), 'error');
+        showSnackbar(JSON.stringify(res.data.error), 'error');
       }
     }
   });
@@ -73,9 +73,9 @@ export default function DepartmentDialog({ open, handleClose, fetchDepartments, 
   const renderFields = (fields) => {
     return fields.map((field) => (
       <Grid2 key={field.name} size={{ xs: 12 }}>
-        <div style={{ paddingBottom: '8px' }}>
-          <Typography variant="body2">{field.label}</Typography>
-        </div>
+        <Typography gutterBottom>
+          {field.label} {<span style={{ color: 'red' }}>*</span>}
+        </Typography>
         <CustomInput
           fullWidth
           name={field.name}
@@ -95,7 +95,7 @@ export default function DepartmentDialog({ open, handleClose, fetchDepartments, 
     <Modal
       open={open}
       maxWidth={ModalSize.SM}
-      header={{ title: 'Add work Location', subheader: '' }}
+      header={{ title: `${type === 'edit' ? 'Update' : 'Add'} Department`, subheader: '' }}
       modalContent={
         <Box component="form" onSubmit={handleSubmit} sx={{ padding: 2 }}>
           <Grid2 container spacing={3}>

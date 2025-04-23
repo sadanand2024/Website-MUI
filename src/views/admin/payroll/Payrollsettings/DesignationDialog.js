@@ -53,7 +53,7 @@ export default function DesignationDialog({ open, handleClose, fetchDesignations
         resetForm();
         showSnackbar(type === 'edit' ? 'Record Updated Successfully' : 'Record Saved Successfully', 'success');
       } else {
-        showSnackbar(JSON.stringify(res.data), 'error');
+        showSnackbar(JSON.stringify(res?.data?.data?.error || 'Unknown error'), 'error');
       }
     }
   });
@@ -67,9 +67,9 @@ export default function DesignationDialog({ open, handleClose, fetchDesignations
   const renderFields = (fields) => {
     return fields.map((field) => (
       <Grid2 key={field.name} size={{ xs: 12 }}>
-        <div style={{ paddingBottom: '8px' }}>
-          <Typography variant="body2">{field.label}</Typography>
-        </div>
+        <Typography gutterBottom>
+          {field.label} {<span style={{ color: 'red' }}>*</span>}
+        </Typography>
         <CustomInput
           fullWidth
           name={field.name}
@@ -88,7 +88,7 @@ export default function DesignationDialog({ open, handleClose, fetchDesignations
     <Modal
       open={open}
       maxWidth={ModalSize.SM}
-      header={{ title: 'Add designation', subheader: '' }}
+      header={{ title: `${type === 'edit' ? 'Update' : 'Add'} designation`, subheader: '' }}
       modalContent={
         <Grid2 container spacing={3}>
           {/* Render dynamic fields for department */}

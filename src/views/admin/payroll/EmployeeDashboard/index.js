@@ -22,7 +22,7 @@ import UpdateIcon from '@mui/icons-material/Update';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import { months } from '@/utils/MonthsList';
 import PayrollMonthwise from '../PayrollDashboard/PayrollMonthwise';
-
+import ComplianceSummary from './ComplianceSummary';
 const PRODUCTS_DATA = [
   { title: 'New Joiners', href: '/payroll-workflows', icon: <PersonAddIcon />, color: '#4CAF50' },
   { title: 'Exits', href: '/payroll-workflows', icon: <ExitToAppIcon />, color: '#F44336' },
@@ -65,7 +65,7 @@ export default function Index() {
   });
 
   // Tab labels
-  const tabLabels = ['Payroll Summary', 'Detailed Payroll'];
+  const tabLabels = ['Payroll Summary', 'Detailed Payroll', 'Compliance Summary'];
   const handleNext = () => {
     setActiveTab((prev) => (prev < 3 ? prev + 1 : prev));
   };
@@ -219,7 +219,7 @@ export default function Index() {
             </MainCard>
           </Grid2>
           <Grid2 size={12}>
-            <Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-between', mb: 2 }}>
+            <Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-between', mb: 0 }}>
               <Tabs value={activeTab} onChange={handleTabChange} aria-label="Statutory Components Tabs">
                 {tabLabels.map((label, index) => (
                   <Tab key={index} label={label} {...a11yProps(index)} />
@@ -233,6 +233,9 @@ export default function Index() {
             </TabPanel>
             <TabPanel value={activeTab} index={1}>
               <DetailedPayroll payrollId={payrollId} month={month} />
+            </TabPanel>
+            <TabPanel value={activeTab} index={2}>
+              <ComplianceSummary payrollId={payrollId} month={month} />
             </TabPanel>
           </Grid2>
         </Grid2>

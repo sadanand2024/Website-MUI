@@ -9,7 +9,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import FilterDialog from './FilterDialog';
 
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Snackbar } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Snackbar, Pagination } from '@mui/material';
 import ActionCell from '@/utils/ActionCell';
 // import { ActionCell } from '@/sections/components/table';
 import Factory from '@/utils/Factory';
@@ -153,7 +153,15 @@ export default function OverviewCard({ businessId, open, onClose }) {
   const [dashboardData, setDashboardData] = useState({});
   const { showSnackbar } = useSnackbar();
   const [invoicesList, setInvoicesList] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const rowsPerPage = 5;
 
+  const totalPages = Math.ceil(invoices.length / rowsPerPage);
+  const paginatedData = invoices.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
+
+  const handlePageChange = (event, newPage) => {
+    setCurrentPage(newPage);
+  };
   const getStatsData = async (type) => {
     if (businessId) {
       setTitle(titles[type]);
@@ -466,8 +474,8 @@ export default function OverviewCard({ businessId, open, onClose }) {
               </TableRow>
             </TableHead>
             <TableBody>
-              {invoices.length > 0 ? (
-                invoices.map((invoice, index) => (
+              {paginatedData.length > 0 ? (
+                paginatedData.map((invoice, index) => (
                   <TableRow key={index}>
                     <TableCell>{invoice.invoice_date}</TableCell>
                     <TableCell>{invoice.invoice_number}</TableCell>
@@ -543,6 +551,11 @@ export default function OverviewCard({ businessId, open, onClose }) {
             </TableBody>
           </Table>
         </TableContainer>
+        {invoices.length > 0 && (
+          <Stack direction="row" justifyContent="center" alignItems="center" sx={{ px: { xs: 0.5, sm: 2.5 }, py: 1.5 }}>
+            <Pagination count={totalPages} page={currentPage} onChange={handlePageChange} color="primary" />
+          </Stack>
+        )}
       </Grid>
       <FilterDialog
         financialYear={financialYear}

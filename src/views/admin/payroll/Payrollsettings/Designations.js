@@ -140,10 +140,10 @@ function Designations() {
               <Table>
                 <TableHead>
                   <TableRow>
-                    <TableCell>S No</TableCell>
-                    <TableCell>Designation Name</TableCell>
-                    <TableCell>No of Employees</TableCell>
-                    <TableCell>Actions</TableCell>
+                    <TableCell sx={{ whiteSpace: 'nowrap', fontWeight: 'bold' }}>S No</TableCell>
+                    <TableCell sx={{ whiteSpace: 'nowrap', fontWeight: 'bold' }}>Designation Name</TableCell>
+                    <TableCell sx={{ whiteSpace: 'nowrap', fontWeight: 'bold' }}>No of Employees</TableCell>
+                    <TableCell sx={{ whiteSpace: 'nowrap', fontWeight: 'bold' }}>Actions</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>

@@ -64,7 +64,7 @@ export default function WorkLocationDialog({ open, handleClose, fetchWorkLocatio
         handleClose();
         showSnackbar(type === 'edit' ? 'Record Updated Successfully' : 'Record Saved Successfully', 'success');
       } else {
-        showSnackbar(res.data, 'success');
+        showSnackbar(JSON.stringify(res?.data?.data?.error || 'Unknown error'), 'error');
       }
     }
   });
@@ -80,8 +80,8 @@ export default function WorkLocationDialog({ open, handleClose, fetchWorkLocatio
       if (field.name === 'address_state') {
         return (
           <Grid2 key={field.name} size={{ xs: 12, sm: 6 }}>
-            <Typography variant="subtitle2" sx={{ mb: 0.5 }}>
-              {field.label}
+            <Typography gutterBottom>
+              {field.label} {<span style={{ color: 'red' }}>*</span>}
             </Typography>
             <CustomAutocomplete
               value={values[field.name]}
@@ -99,7 +99,7 @@ export default function WorkLocationDialog({ open, handleClose, fetchWorkLocatio
       return (
         <Grid2 key={field.name} size={{ xs: 12, sm: 6 }}>
           <Typography variant="subtitle2" sx={{ mb: 0.5 }}>
-            {field.label}
+            {field.label} {field.name !== 'address_line2' && <span style={{ color: 'red' }}>*</span>}
           </Typography>
           <CustomInput
             name={field.name}
@@ -119,7 +119,7 @@ export default function WorkLocationDialog({ open, handleClose, fetchWorkLocatio
     <Modal
       open={open}
       maxWidth={ModalSize.MD}
-      header={{ title: 'Add work Location', subheader: '' }}
+      header={{ title: `${type === 'edit' ? 'Update' : 'Add'} work Location`, subheader: '' }}
       modalContent={
         <Box component="form" onSubmit={handleSubmit} sx={{ padding: 2 }}>
           <Grid2 container spacing={3}>

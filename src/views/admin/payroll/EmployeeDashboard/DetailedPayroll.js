@@ -61,7 +61,7 @@ export default function DetailedPayroll({ payrollId, month }) {
   useEffect(() => {
     if (payrollId) fetchDetailedSummary();
   }, [payrollId]);
-
+  console.log(paginatedData);
   return (
     <MainCard>
       <Stack direction="column" spacing={2}>
@@ -87,12 +87,12 @@ export default function DetailedPayroll({ payrollId, month }) {
               ) : (
                 paginatedData?.map((item, index) => (
                   <TableRow key={item.employee || index}>
-                    <TableCell>{item.employee_id}</TableCell>
+                    <TableCell>{item.employee}</TableCell>
                     <TableCell>{item.employee_name}</TableCell>
                     <TableCell>{item.department}</TableCell>
                     <TableCell>{item.designation}</TableCell>
                     <TableCell>{item.total_days_of_month}</TableCell>
-                    <TableCell>{item.loss_of_pay}</TableCell>
+                    <TableCell>{item.lop}</TableCell>
                     <TableCell>{item.paid_days}</TableCell>
                     <TableCell>{item.ctc}</TableCell>
                     <TableCell>{item.gross_salary}</TableCell>
@@ -103,14 +103,14 @@ export default function DetailedPayroll({ payrollId, month }) {
                     <TableCell>{item.bonus}</TableCell>
                     <TableCell>{item.other_earnings}</TableCell>
                     <TableCell>{item.benefits_total}</TableCell>
-                    <TableCell>{item.deductions['Employee Deductions']}</TableCell>
-                    <TableCell>{item.pf}</TableCell>
+                    <TableCell>{/* {item.deductions['Employee Deductions']} */}fd</TableCell>
+                    <TableCell>{item.epf}</TableCell>
                     <TableCell>{item.esi}</TableCell>
                     <TableCell>{item.pt}</TableCell>
                     <TableCell>{item.tds}</TableCell>
                     <TableCell>{item.pt}</TableCell>
                     <TableCell>{item.pt}</TableCell>
-                    <TableCell>{item.deductions['Total']}</TableCell>
+                    <TableCell>{/* {item.deductions['Total']} */} h</TableCell>
                     <TableCell>{item.net_salary}</TableCell>
                     <TableCell>{item.status}</TableCell>
                     <TableCell

@@ -49,7 +49,7 @@ export default function PayrollDashboard() {
     } else {
       setBusinessDetails({});
       setLoading(false);
-      showSnackbar(JSON.stringify(res?.data?.error), 'error');
+      showSnackbar(JSON.stringify(res?.data?.error || 'Unknown error'), 'error');
     }
   };
 
@@ -61,9 +61,8 @@ export default function PayrollDashboard() {
     if (res?.status_cd === 0) {
       getData(res.data.id);
     } else {
-      showSnackbar(JSON.stringify(res?.data?.error || 'Unknown error'), 'error');
+      showSnackbar(JSON.stringify(res?.data?.data?.error || 'Unknown error'), 'error');
     }
-
     setLoading(false);
   };
   useEffect(() => {
@@ -93,7 +92,7 @@ export default function PayrollDashboard() {
   ) : (
     <HomeCard
       title={`Payroll for ${businessDetails?.nameOfBusiness}`}
-      tagline="Create and manage different departments of Your organization."
+      tagline="Create and manage Payroll for your employees."
       CustomElement={() => (
         <Stack direction="row" sx={{ gap: 2 }}>
           <CustomAutocomplete

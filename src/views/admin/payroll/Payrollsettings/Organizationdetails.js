@@ -96,7 +96,7 @@ function Organizationdetails({ tab }) {
       .required('PAN Number is required')
       .matches(/^[A-Z]{5}[0-9]{4}[A-Z]$/, 'Invalid PAN Number format'),
     entityType: Yup.string().required('Entity Type is required'),
-    registration_number: Yup.string().required('This field is required'),
+    // registration_number: Yup.string().required('This field is required'),
     dob_or_incorp_date: Yup.string().required('This field is required'),
 
     primary_email: Yup.string().email('Invalid email address').required('Email is required'),
@@ -174,7 +174,7 @@ function Organizationdetails({ tab }) {
       ) {
         return (
           <Grid2 key={field.name} size={{ xs: 12, sm: 6, md: 4 }}>
-            <Typography sx={{ mb: 1 }}>
+            <Typography gutterBottom>
               {field.label} {<span style={{ color: 'red' }}>*</span>}
             </Typography>
             <CustomAutocomplete
@@ -193,7 +193,7 @@ function Organizationdetails({ tab }) {
       if (field.name === 'dob_or_incorp_date') {
         return (
           <Grid2 key={field.name} size={{ xs: 12, sm: 6, md: 4 }}>
-            <Typography sx={{ mb: 1 }}>
+            <Typography gutterBottom>
               {field.label} {<span style={{ color: 'red' }}>*</span>}
             </Typography>
             <CustomDatePicker
@@ -215,9 +215,11 @@ function Organizationdetails({ tab }) {
       }
       return (
         <Grid2 key={field.name} size={{ xs: 12, sm: 6, md: 4 }}>
-          <Typography sx={{ mb: 1 }}>
+          <Typography gutterBottom>
             {field.label}{' '}
-            {field.name !== 'org_address_line2' && field.name !== 'filling_address_line2' && <span style={{ color: 'red' }}>*</span>}{' '}
+            {field.name !== 'org_address_line2' && field.name !== 'filling_address_line2' && field.name !== 'registration_number' && (
+              <span style={{ color: 'red' }}>*</span>
+            )}{' '}
             {field.name === 'sender_email' && (
               <Tooltip title="Pay slips, offer letters, and emails will be sent through this email." placement="right" arrow>
                 <InfoOutlinedIcon sx={{ fontSize: 18, ml: 0.5, color: 'gray', cursor: 'pointer' }} />
